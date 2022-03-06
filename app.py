@@ -12,6 +12,7 @@ mydb=mysql.connector.connect(
     password="123456789",
     database="website"
     )
+#API-1
 @app.route("/api/attractions")
 def attractions():
 	try:
@@ -49,6 +50,30 @@ def attractions():
 			print(data)
 			#mydb.close()
 			return str(resP)
+		#mydb.close()
+		#return render_template("index.html")
+		#mycursor.close()
+	except: 
+		error={"error":"true","message":"自訂的錯誤訊息"}
+		return str(error)
+#API-2
+@app.route("/api/attraction")
+def attractionId():
+	try:
+		keyId=request.args.get("attractionId","None")
+		info=("id","name","category","description","address","transport","mrt","latitude","longitude","images")
+		sql="SELECT * FROM website.attraction WHERE id=%s"
+		val=(str(keyId),)
+		print(val)
+		mycursor=mydb.cursor()
+		mycursor.execute(sql,val)
+		mydata=mycursor.fetchone()
+		print(mydata)
+		data={info[j]:mydata[j] for j in range(len(mydata))}
+		resP={"data":data}
+		print(data)
+		#mydb.close()
+		return str(resP)
 		#mydb.close()
 		#return render_template("index.html")
 		#mycursor.close()

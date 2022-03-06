@@ -23,7 +23,6 @@ with open("taipei-attractions.json","r", encoding="utf-8-sig") as response:
 lens=len(raw["result"]["results"])
 for i in range(lens):  # 
     id=i
-    nextPage=i//12
     name=raw["result"]["results"][i]["stitle"]
     category=raw["result"]["results"][i]["CAT2"]
     description=raw["result"]["results"][i]["stitle"][0:32]
@@ -41,8 +40,8 @@ for i in range(lens):  #
     while '' in images:
         images.remove('')
     images=str(images)
-    sql="INSERT INTO taipei_attrations_website(nextPage,name,category,description,address,transport,mrt,latitude,longitude,images) VALUE(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)" 
-    val=(nextPage,name,category,description,address,transport,mrt,latitude,longitude,str(images),)
+    sql="INSERT INTO attraction(name,category,description,address,transport,mrt,latitude,longitude,images) VALUE(%s,%s,%s,%s,%s,%s,%s,%s,%s)" 
+    val=(name,category,description,address,transport,mrt,latitude,longitude,str(images),)
     mycursor=mydb.cursor()
     mycursor.execute(sql,val)
     mydb.commit()
