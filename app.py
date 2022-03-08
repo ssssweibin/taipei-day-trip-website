@@ -19,11 +19,12 @@ def attractions():
 		keyPage=request.args.get("page","0")
 		keyWord=request.args.get("keyword",None)
 		x=int(keyPage)*12
+		print(keyPage)
 		data=[]
 		info=("id","nextPage","name","category","description","address","transport","mrt","latitude","longitude","images")
 		if keyWord==None:
-			for i in range(x,x+12):
-				sql="SELECT * FROM website.taipei_attrations_website WHERE id=%s"
+			for i in range(x+1,x+13):
+				sql="SELECT id,nextPage,name,category,description,address,transport,mrt,latitude,longitude,images FROM website.taipei_attrations_website WHERE id=%s"
 				val=(str(i),)
 				#print(val)
 				mycursor=mydb.cursor()
@@ -37,7 +38,7 @@ def attractions():
 			#mydb.close()
 			return str(resP)
 		else: 
-			sql="SELECT * FROM website.taipei_attrations_website WHERE nextPage=%s and name LIKE %s"
+			sql="SELECT id,nextPage,name,category,description,address,transport,mrt,latitude,longitude,images FROM website.taipei_attrations_website WHERE nextPage=%s and name LIKE %s"
 			keyWord='%'+keyWord.strip('"')+'%'
 			val=(keyPage,keyWord)
 			print(val)
@@ -54,15 +55,15 @@ def attractions():
 		#return render_template("index.html")
 		#mycursor.close()
 	except: 
-		error={"error":"true","message":"自訂的錯誤訊息"}
+		error={"error":True,"message":"連結錯誤或無搜尋配對"}
 		return str(error)
 #API-2
-@app.route("/api/attraction")
-def attractionId():
+@app.route("/api/attraction/<attractionId>")
+def attractionId(attractionId):
 	try:
-		keyId=request.args.get("attractionId","None")
+		keyId=attractionId
 		info=("id","name","category","description","address","transport","mrt","latitude","longitude","images")
-		sql="SELECT * FROM website.attraction WHERE id=%s"
+		sql="SELECT id,name,category,description,address,transport,mrt,latitude,longitude,images FROM website.attraction WHERE id=%s"
 		val=(str(keyId),)
 		print(val)
 		mycursor=mydb.cursor()
@@ -78,7 +79,7 @@ def attractionId():
 		#return render_template("index.html")
 		#mycursor.close()
 	except: 
-		error={"error":"true","message":"自訂的錯誤訊息"}
+		error={"error":True,"message":"自訂的錯誤訊息"}
 		return str(error)
 # Pages
 @app.route("/")
