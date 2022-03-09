@@ -1,5 +1,5 @@
-from signal import valid_signals
-from typing import Dict
+#from signal import valid_signals
+#from typing import Dict
 from flask import *
 import mysql.connector
 app=Flask(__name__)
