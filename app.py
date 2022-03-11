@@ -8,7 +8,7 @@ app.config["TEMPLATES_AUTO_RELOAD"]=True
 app.secret_key="week4test3"
 mydb=mysql.connector.connect(
     host="localhost",
-    user="root",
+    user="toor",
     password="",
     database="website"
     )
