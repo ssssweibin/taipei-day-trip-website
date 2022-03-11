@@ -9,7 +9,7 @@ app.secret_key="week4test3"
 mydb=mysql.connector.connect(
     host="localhost",
     user="root",
-    password="123456789",
+    password="",
     database="website"
     )
 #API-1
