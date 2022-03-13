@@ -63,7 +63,7 @@ def attractionId(attractionId):
 	try:
 		keyId=attractionId
 		info=("id","name","category","description","address","transport","mrt","latitude","longitude","images")
-		sql="SELECT id,name,category,description,address,transport,mrt,latitude,longitude,images FROM website.attraction WHERE id=%s"
+		sql="SELECT id,name,category,description,address,transport,mrt,latitude,longitude,images FROM website.taipei_attrations_website WHERE id=%s"
 		val=(str(keyId),)
 		print(val)
 		mycursor=mydb.cursor()
