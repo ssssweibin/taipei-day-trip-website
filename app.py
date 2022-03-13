@@ -95,5 +95,5 @@ def booking():
 def thankyou():
 	return render_template("thankyou.html")
 
-app.run(host="34.231.207.168", port=3000)
+app.run(host="0.0.0.0", port=3000)
 #id,nextPage,name,category,description,address,transport,mrt,latitude,longitude,images
