@@ -8,8 +8,8 @@ app.config["TEMPLATES_AUTO_RELOAD"]=True
 app.secret_key="week4test3"
 mydb=mysql.connector.connect(
     host="localhost",
-    user="root",
-    password="123456789",
+    user="toor",
+    password="",
     database="website"
     )
 #API-1
