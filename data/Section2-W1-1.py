@@ -23,10 +23,10 @@ with open("taipei-attractions.json","r", encoding="utf-8-sig") as response:
 lens=len(raw["result"]["results"])
 for i in range(lens):  # 
     id=i
-    nextPage=i//12
+    nextPage=(i//12)+1
     name=raw["result"]["results"][i]["stitle"]
     category=raw["result"]["results"][i]["CAT2"]
-    description=raw["result"]["results"][i]["stitle"][0:32]
+    description=raw["result"]["results"][i]["xbody"][0:32]
     address=raw["result"]["results"][i]["address"]
     transport=raw["result"]["results"][i]["info"]
     mrt=raw["result"]["results"][i]["MRT"]
