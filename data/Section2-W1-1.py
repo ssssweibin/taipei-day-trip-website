@@ -13,8 +13,8 @@ app=Flask(__name__)
 app.secret_key="sec2week1"
 mydb=mysql.connector.connect(
     host="localhost",
-    user="root",
-    password="123456789",
+    user="toor",
+    password="",
     database="website"
     )
 
